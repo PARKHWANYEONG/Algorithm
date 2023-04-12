@@ -1,22 +1,23 @@
 function solution(nums) {
-    let arr = [];
-    let answer = 0;
-    let length = nums.length;
-    for(let i=0; i<length-2; i++){
-        for(let j=i+1; j<length-1; j++){
-            for(let k=j+1; k<length; k++){
-                arr.push(nums[i]+nums[j]+nums[k])
+    const isPrime = (num)=> {
+        for(let i=2; i<=Math.sqrt(num); i++){
+            if(num%i===0){
+                return false;
             }
         }
+        return true;
     }
-    for(let m=0; m<arr.length; m++){
-         let cnt = 0;
-        for(let n=1; n<arr[m]; n++){
-            if(arr[m]%n===0){
-                cnt++;
+    
+    let answer = 0;
+    
+    for(let j=0; j<nums.length-2; j++){
+        for(let k=j+1; k<nums.length-1; k++){
+            for(let z=k+1; z<nums.length; z++){
+                if(isPrime(nums[j]+nums[k]+nums[z])){
+                    answer++;
+                }
             }
         }
-        if(cnt===1) answer++;
     }
     return answer;
 }
