@@ -1,10 +1,18 @@
 function solution(babbling) {
-    let temp = ["aya", "ye", "woo", "ma"];
-    
-   let answer =babbling.map(v=>{
-       let str = v;
-       temp.forEach(s=> str=str.replace(s,'|'));
-       return str
-   })
-   return answer.map(v=>v.replace(/[|]/g,'')).filter(v=> v==='').length
+    const wordSet = new Set(["aya", "ye", "woo", "ma"])
+    let result = 0;
+
+    for(const word of babbling) {
+        let remainWord = '';
+        let prevWord = '';
+        for(const char of word) {
+            remainWord += char;
+            if(wordSet.has(remainWord)) {
+                prevWord = remainWord
+                remainWord = ''
+            }
+        }
+        if(remainWord === '') result++
+    }
+    return result;
 }
