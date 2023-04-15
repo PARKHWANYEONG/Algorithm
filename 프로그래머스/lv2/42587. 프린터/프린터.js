@@ -1,19 +1,15 @@
 function solution(P, L) {
-    let arr = P.map((v,i)=> [i,v]);
-    let max = P.sort((a,b)=>b-a)
-    let answer = [];
-    
-    console.log(arr)
-    
+    let arr= P.map((v,i)=>{return{idx:i , pri:v}});
+    let answer = []
     while(arr.length){
-        if(arr[0][1] === max[0]){
-            let temp = arr.shift();
-            answer.push(temp[0]);
-            max.shift();
+        let temp = arr.shift();
+        let hasSome = arr.some(v=> temp.pri < v.pri);
+        if(!hasSome){
+            answer.push(temp);
         }else{
-            let temp = arr.shift();
-            arr.push(temp)
+            arr.push(temp);
         }
     }
-    return answer.indexOf(L)+1 
+    console.log(answer)
+    return answer.findIndex(v=>v.idx === L) + 1
 }
