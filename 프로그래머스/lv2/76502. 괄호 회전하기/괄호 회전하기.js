@@ -1,23 +1,15 @@
 function solution(s) {
-    let answer = 0;
-    let stack = [];
-    for(let i=0; i<s.length; i++){
-        let result = true;
-        let temp = s.slice(i) + s.slice(0,i);
-        if(temp[0]=== '}'|| temp[0]===']'|| temp[0]=== ')') continue;
-        for(let j=0; j<temp.length; j++){
-            if(temp[j]==='{'||temp[j]==='['||temp[j]==='('){
-                stack.push(temp[j]);
-            }else{
-                let temp2 = stack.pop();
-                if(temp[j]==='}' && temp2 ==='{') continue;
-                if(temp[j]===']' && temp2 ==='[') continue;
-                if(temp[j]===')' && temp2 ==='(') continue;
-                result = false;
-                break;
-            }
-        }
-        if(result) answer++;
+  let answer = 0;
+  for (let i = 0; i < s.length; i++) {
+    const arr = [];
+    const temp = i === 0 ? s : s.slice(i) + s.slice(0, i);
+    for (let j = 0; j < temp.length; j++) {
+      if (arr[arr.length - 1] === '(' && temp[j] === ')') arr.pop();
+      else if (arr[arr.length - 1] === '[' && temp[j] === ']') arr.pop();
+      else if (arr[arr.length - 1] === '{' && temp[j] === '}') arr.pop();
+      else arr.push(temp[j]);
     }
-    return s.length%2 ? 0 : answer
+    if (arr.length === 0) answer++;
+  }
+  return answer;
 }
