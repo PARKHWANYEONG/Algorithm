@@ -1,17 +1,5 @@
-function solution(num) {
-    let cnt = 0;
-    if(num===1) return 0;
-    
-    while(cnt<=500){
-        if(num%2){
-            num = num*3 +1;
-            cnt++;
-        }else{
-            num/=2;
-            cnt++
-        }
-        if(num===1) return cnt
-    }
-    
-   if(cnt > 500) return -1;
+function solution(num , cnt=0) {
+    if(num===1) return cnt
+    if(cnt >500) return -1
+    return num%2 ? solution(num*3+1 ,++cnt) : solution(num/2,++cnt)
 }
