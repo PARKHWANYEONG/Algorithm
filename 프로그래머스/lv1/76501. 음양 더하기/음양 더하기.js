@@ -1,3 +1,3 @@
 function solution(absolutes, signs) {
-   return absolutes.map((v,i)=> signs[i] ? v : -v).reduce((a,c)=>a+c,0)
+   return absolutes.reduce((a,c,i)=> signs[i] ? a + c : a - c,0)
 }
