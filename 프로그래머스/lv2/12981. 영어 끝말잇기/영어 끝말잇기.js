@@ -1,9 +1,14 @@
 function solution(n, words) {
-    let index;
-    words.reduce((prev,cur,idx)=>{
-       index = index || ((words.slice(0,idx).indexOf(cur) !== -1 || prev !== cur[0]) ? idx : index)
-        return cur[cur.length-1];
-    },'')
+    let temp = {};
     
-   return index ? [(index%n)+1, Math.floor(index/n)+1] : [0,0]
+    temp[words[0]] = true;
+    
+    for(let i=1; i<words.length; i++){
+        if(words[i-1].substr(-1) !== words[i][0] || temp[words[i]] ) {
+            return [(i%n)+1 , Math.floor(i/n)+1]
+         }
+        temp[words[i]]= true;
+    }
+    
+    return [0,0]
 }
