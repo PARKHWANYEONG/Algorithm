@@ -1,13 +1,17 @@
-function solution(P, L) {
-   P.sort((a,b)=>a-b);
-    let answer =0;
-   for(let i=0 ,j=P.length-1; i<=j; i++,answer++){
-       if(P[i]+P[j] <= L){
-           j--;
-       }else{
-           i--;
-           j--
-       }
-   }
-    return answer;
+function solution(people, limit) {
+    people.sort((a,b)=>a-b);
+    let cnt = 0;
+    let left = 0 ,right=people.length-1;
+    while(left<right){
+        if(people[left] + people[right] <=limit){
+            left++;
+            right--;
+            cnt++;
+        }else{
+            right--;
+            cnt++
+        }
+    }
+    if(left===right) cnt++;
+    return cnt;
 }
