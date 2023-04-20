@@ -1,9 +1,7 @@
 function solution(n) {
-    let answer= [];
-    for(let i=0; i<=n; i++){
-        if(i===0) answer.push(0);
-        if(i===1) answer.push(1);
-        if(i>=2) answer.push((answer[i-2]+answer[i-1])%1234567);
+    let temp = [0,1,1];
+    for(let i=3; i<=n; i++){
+        temp[i] = temp[i-1]%1234567 + temp[i-2]%1234567
     }
-    return answer[n]
+    return temp[n]%1234567
 }
