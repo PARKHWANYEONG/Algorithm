@@ -1,8 +1,8 @@
 function solution(name, yearning, photo) {
-    let ob = {};
+    let temp = {}
     
-    for(let i=0; i<name.length; i++){
-        ob[name[i]] = yearning[i]
-    }
-   return photo.map(v=> v.map(val=>ob[val]? ob[val]:0)).map(v=>v.reduce((a,c)=>a+c))
+    name.forEach((v,i)=>temp[v]=yearning[i])
+    
+  return photo.map(v=>v.reduce((a,c)=>{if(temp[c]!==undefined){return a + temp[c]}else{return a + 0}},0))
+    
 }
