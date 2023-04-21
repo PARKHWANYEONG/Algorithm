@@ -1,16 +1,18 @@
 function solution(n) {
-    let isPrime = [];
-    let primeNum = [];
-    for(let i=2; i<=n; i++){
-        isPrime[i]=true;
+    let set = new Set();
+    set.add(2);
+    
+    for(let i=3; i<=n; i+=2){
+        set.add(i)
     }
-    for(let j=2; j<=n; j++){
-        if(isPrime[j]){
-            primeNum.push(j);
-            for(let k=j; k<=n; k+=j){
-                isPrime[k]=false;
+    
+    for(let j=3; j<=Math.sqrt(n); j++){
+        if(set.has(j)){
+            for(let k=j*2; k<=n; k+=j){
+                set.delete(k);
             }
         }
     }
-    return primeNum.length;
+    
+    return set.size
 }
