@@ -1,14 +1,14 @@
 function solution(s) {
-    let ob = {}
-    let answer = []
+    let temp = [];
+    let answer = [];
     for(let i=0; i<s.length; i++){
-        if(ob[s[i]]===undefined){
-            ob[s[i]] = i;
-            answer.push(-1);
+        if(temp.includes(s[i])){
+          answer.push(temp.length - temp.lastIndexOf(s[i]))
+          temp.push(s[i]);
         }else{
-            answer.push(i-ob[s[i]]);
-            ob[s[i]] = i;
+          temp.push(s[i]);
+          answer.push(-1)
         }
     }
-    return answer
+    return answer;
 }
