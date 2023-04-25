@@ -1,19 +1,18 @@
 function solution(X, Y) {
-    let reg = new RegExp(`[${X}]`,'g')
-    let includes = [...new Set(Y.match(reg))]
-    if(includes.length === 0){
-        return '-1'
-    }else if(includes.filter(v=>v!=='0').length===0){
-        return '0'
-    }else{
-        includes.sort((a,b)=> +b - +a);
-        let temp = ''
-        for(let i=0; i<includes.length; i++){
-            let xC = [...X].filter(v=>v===includes[i]).length;
-            let yC = [...Y].filter(v=>v===includes[i]).length;
-                temp += includes[i].repeat(Math.min(xC,yC));
-        }
-        return temp
+    let temp = {};
+    let answer = ''
+    
+    for(let i=0; i<X.length; i++){
+        temp[X[i]] = (temp[X[i]] || 0) + 1;
     }
+    
+    for(let j=0; j<Y.length; j++){
+        if(temp[Y[j]]){
+            temp[Y[j]]--;
+            answer += Y[j];
+        }
+    }
+    if(!answer) return '-1';
+    if(!(answer*1)) return '0';
+    return [...answer].sort((a,b)=> +b - +a).join('')
 }
-
