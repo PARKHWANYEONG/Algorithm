@@ -1,20 +1,14 @@
 function solution(skill, skill_trees) {
-    
-    let answer = 0;
-    
-    for(let i=0; i<skill_trees.length; i++){
-        let sequence = [...skill]
-        let temp = skill_trees[i];
-        for(let j=0; j<temp.length; j++){
-            if(sequence.includes(temp[j])){
-                if(sequence[0] === temp[j]){
-                    sequence.shift();
-                }else{
-                    break;
-                }
-            }
-            if(j===temp.length-1) answer++;
+    function isCorrect(n) {
+           // n =  'BACDE'
+        let test = skill.split('');  //['C','B','D']
+        for (var i = 0; i < n.length; i++) {   
+            if (!skill.includes(n[i])) continue;
+            if (n[i] === test.shift()) continue;
+            return false;
         }
-    }
-    return answer
+        return true;
+    }    
+
+    return skill_trees.filter(isCorrect).length;
 }
