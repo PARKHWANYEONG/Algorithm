@@ -1,17 +1,18 @@
 function solution(people, limit) {
+    
     people.sort((a,b)=>a-b);
+    
     let cnt = 0;
-    let left = 0 ,right=people.length-1;
-    while(left<right){
-        if(people[left] + people[right] <=limit){
-            left++;
-            right--;
+    for(var l=0,r=people.length-1; l<r; r--){
+        if((people[l] + people[r]) <= limit){
             cnt++;
+            l++;
         }else{
-            right--;
-            cnt++
+            cnt++;
         }
     }
-    if(left===right) cnt++;
+    if(l === r){
+        cnt ++;
+    }
     return cnt;
 }
