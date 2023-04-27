@@ -1,9 +1,20 @@
 function solution(numbers) {
     let set = new Set();
-    for(let i=0; i<numbers.length-1; i++){
-        for(let j=i+1; j<numbers.length; j++){
-            set.add(numbers[i]+numbers[j])
+    let check = Array.from({length:numbers.length},()=>0);
+    
+    const DFS = (idx,sum,cnt)=>{
+        if(cnt === 2){
+           return set.add(sum);
+        }
+        for(let i=idx; i<numbers.length; i++){
+            if(!check[i]){
+                check[i] = 1;
+                DFS(i,sum+numbers[i],cnt+1);
+                check[i] = 0;
+            }
         }
     }
+    
+    DFS(0,0,0);
     return [...set].sort((a,b)=>a-b)
 }
