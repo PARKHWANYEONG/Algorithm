@@ -1,9 +1,12 @@
 function solution(a, b) {
-    let month = [31,29,31,30,31,30,31,31,30,31,30,31];
-    let day = ['FRI','SAT','SUN','MON','TUE','WED','THU'];
-    let sum = b;
+   let month = [31,29,31,30,31,30,31,31,30,31,30,31];
+   let day = b;
+   let days = ['FRI','SAT','SUN','MON','TUE','WED','THU']
+    
     for(let i=0; i<a-1; i++){
-        sum += month[i];
+        day += month[i];
     }
-    return day[--sum%7]
+    
+   console.log(day)
+    return days[(day-1)%7]
 }
