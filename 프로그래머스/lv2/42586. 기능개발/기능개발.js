@@ -1,16 +1,18 @@
-function solution(P, S) {
+function solution(progresses, speeds) {
+    let day = progresses.map((v,i)=> Math.ceil((100-v)/speeds[i]));
     let answer = [];
-    
-    while(S.length){
-        S.forEach((v,i)=> P[i]+=S[i]);
-        let cnt = 0;
-        
-        while(P[0]>=100){
-            P.shift();
-            S.shift();
-            cnt++;
+    let temp = 0;
+    console.log(day)
+    while(day.length > 0){
+        let program = day.shift();
+        temp++;
+        while(day[0] <= program){
+            day.shift();
+            temp++;
         }
-        if(cnt>0) answer.push(cnt);
+        answer.push(temp);
+        temp=0;
     }
+    
     return answer;
 }
