@@ -1,10 +1,9 @@
 function solution(n, left, right) {
     let answer = [];
     
-    while(left<=right){
-      answer.push(Math.max(...[Math.floor(left/n) , left%n])+1);
-        left++;
+    for(let i=left; i<=right; i++){
+        answer.push(Math.max(Math.floor(i/n),i%n)+1)
     }
     
-    return answer;
+    return answer
 }
