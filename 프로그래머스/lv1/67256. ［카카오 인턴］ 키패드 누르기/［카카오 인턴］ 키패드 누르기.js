@@ -1,51 +1,47 @@
 function solution(numbers, hand) {
-    let leftTh= '*';
-    let rightTh= '#';
-    let result = '';
-    
-    for(let i=0; i<numbers.length; i++){
-        if(numbers[i] === 1 || numbers[i] === 4 || numbers[i] === 7){
-            result += 'L'
-            leftTh = numbers[i];
-        }else if(numbers[i] === 3 || numbers[i] === 6 || numbers[i] === 9){
-            result += 'R'
-            rightTh = numbers[i];
-        }else {
-            let leftPoint = find(leftTh);
-            let rightPoint = find(rightTh);
-            let keyPoint = find(numbers[i]);
-            let leftDistance = Math.abs(leftPoint[0]-keyPoint[0]) + Math.abs(leftPoint[1]-keyPoint[1]);
-            let rightDistance = Math.abs(rightPoint[0]-keyPoint[0]) + Math.abs(rightPoint[1]-keyPoint[1]);
-            if(leftDistance > rightDistance){
-                result += 'R';
-                rightTh = numbers[i];
-            }else if(leftDistance < rightDistance){
-                result += 'L'
-                leftTh = numbers[i];
-            }else{
-                if(hand ==='right'){
-                    result += 'R';
-                    rightTh = numbers[i];
-                }else{
-                    result += 'L'
-                    leftTh = numbers[i];
-                }
-            }
-            
-        }
+    const leftCheck = (num)=>{
+        result += 'L';
+        left = num;
+    }
+    const rightCheck = (num)=>{
+        result += 'R';
+        right = num;
     }
     
+    let left = '*';
+    let right = '#';
+    let result = '';
+
+    for(let i=0; i<numbers.length; i++){
+        if(numbers[i] === 1 || numbers[i] === 4 || numbers[i] === 7) leftCheck(numbers[i]);
+        else if(numbers[i] === 3 || numbers[i] === 6 || numbers[i] === 9) rightCheck(numbers[i]);
+        else {
+            let key = coordinate(numbers[i]);
+            let leftKey = coordinate(left);
+            let rightKey = coordinate(right);
+            if(distance(key,leftKey) > distance(key,rightKey)){
+                rightCheck(numbers[i]);
+            }else if(distance(key,leftKey) < distance(key,rightKey)){
+                leftCheck(numbers[i]);
+            }else if(hand === "right")rightCheck(numbers[i]);
+             else leftCheck(numbers[i])
+        }
+    }
     return result;
 }
-function find(v){
-     let key = [[1,2,3],
-                [4,5,6],
-                [7,8,9],
-              ['*',0,'#']];
+const coordinate = (num)=>{
+    let key = [[1,2,3],
+               [4,5,6],
+               [7,8,9],
+               ['*',0,'#']];
+    
     for(let i=0; i<key.length; i++){
-        if(key[i].includes(v)){
-            return [i,key[i].indexOf(v)];
+        if(key[i].includes(num)){
+            return [i,key[i].indexOf(num)];
         }
     }
 }
 
+const distance = (coor1 , coor2)=>{
+    return Math.abs(coor1[0] - coor2[0]) + Math.abs(coor1[1]- coor2[1])
+}
