@@ -1,11 +1,10 @@
 function solution(n) {
-    let num = ['4','1','2'];
-    let answer = '';
-    
-    while(n){
-        answer = num[n%3] + answer;
-        n = (n%3) ? Math.floor(n/3) : n/3 - 1
-    }
-    
-    return answer;
+  var src = [4,1,2];
+
+  var result = '';
+  while(n) {
+    result = src[n%3] + result;
+    n = Math.floor((n-1)/3);
+  }
+  return result;
 }
