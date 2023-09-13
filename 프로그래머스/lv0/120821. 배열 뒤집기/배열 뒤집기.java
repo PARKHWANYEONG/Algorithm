@@ -1,12 +1,18 @@
 class Solution {
     public int[] solution(int[] num_list) {
-        int[] answer = new int[num_list.length];
-        int temp = num_list.length-1;
         
-        for(int i=0; i<num_list.length; i++,temp--){
-            answer[i] = num_list[temp];
+        int start = 0;
+        int end = num_list.length-1;
+        while(start < end){
+            int temp = num_list[start];
+            if(temp != num_list[end]){
+                num_list[start] = num_list[end];
+                num_list[end] = temp;
+            }
+            start++;
+            end--;
         }
         
-        return answer;
+        return num_list;
     }
 }
