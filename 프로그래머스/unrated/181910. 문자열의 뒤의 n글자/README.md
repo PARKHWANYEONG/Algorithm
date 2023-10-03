@@ -4,7 +4,7 @@
 
 ### 성능 요약
 
-메모리: 33.4 MB, 시간: 0.02 ms
+메모리: 73.7 MB, 시간: 0.01 ms
 
 ### 구분
 
@@ -12,7 +12,7 @@
 
 ### 채점결과
 
-Empty
+정확성: 100.0<br/>합계: 100.0 / 100.0
 
 ### 문제 설명
 
@@ -41,7 +41,7 @@ Empty
         <tbody><tr>
 <td>"ProgrammerS123"</td>
 <td>11</td>
-<td>"grammserS123"</td>
+<td>"grammerS123"</td>
 </tr>
 <tr>
 <td>"He110W0r1d"</td>
