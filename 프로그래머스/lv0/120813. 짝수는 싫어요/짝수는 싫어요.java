@@ -1,13 +1,6 @@
-import java.util.*;
+import java.util.stream.*;
 class Solution {
     public int[] solution(int n) {
-        
-        ArrayList<Integer> list = new ArrayList<>();
-        
-        for(int i=1; i<=n; i+=2){
-            list.add(i);
-        }
-        
-        return list.stream().mapToInt(Integer::valueOf).toArray();
+        return IntStream.rangeClosed(1,n).filter(v-> v%2 == 1).toArray();
     }
 }
