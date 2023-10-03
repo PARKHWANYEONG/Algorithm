@@ -4,7 +4,7 @@
 
 ### 성능 요약
 
-메모리: 33.5 MB, 시간: 0.04 ms
+메모리: 71.5 MB, 시간: 0.03 ms
 
 ### 구분
 
@@ -12,16 +12,16 @@
 
 ### 채점결과
 
-Empty
+정확성: 100.0<br/>합계: 100.0 / 100.0
 
 ### 문제 설명
 
 <p>1부터 6까지 숫자가 적힌 주사위가 두 개 있습니다. 두 주사위를 굴렸을 때 나온 숫자를 각각 <code>a</code>, <code>b</code>라고 했을 때 얻는 점수는 다음과 같습니다.</p>
 
 <ul>
-<li>a와 b가 모두 홀수라면 a<sup>2</sup> + b<sup>2</sup> 점을 얻습니다.</li>
-<li>a와 b 중 하나만 홀수라면 2 × (a + b) 점을 얻습니다.</li>
-<li>a와 b 모두 홀수가 아니라면 |a - b| 점을 얻습니다.</li>
+<li><code>a</code>와 <code>b</code>가 모두 홀수라면 <code>a</code><sup>2</sup> + <code>b</code><sup>2</sup> 점을 얻습니다.</li>
+<li><code>a</code>와 <code>b</code> 중 하나만 홀수라면 2 × (<code>a</code> + <code>b</code>) 점을 얻습니다.</li>
+<li><code>a</code>와 <code>b</code> 모두 홀수가 아니라면 |<code>a</code> - <code>b</code>| 점을 얻습니다.</li>
 </ul>
 
 <p>두 정수 <code>a</code>와 <code>b</code>가 매개변수로 주어질 때, 얻는 점수를 return 하는 solution 함수를 작성해 주세요.</p>
