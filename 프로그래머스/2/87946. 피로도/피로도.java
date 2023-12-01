@@ -9,7 +9,6 @@ class Solution {
     public int solution(int k, int[][] dungeons) {
 
         visited = new boolean[dungeons.length];
-        Arrays.fill(visited, false);
         dungeon = dungeons;
 
         dfs(k, 0);
