@@ -1,44 +1,25 @@
 class Solution {
     public String solution(String new_id) {
-        String answer = "";
+        String replaced = new_id.toLowerCase()
+                .replaceAll("[^a-z0-9-_.]", "")
+                .replaceAll("[.]{2,}", ".")
+                .replaceAll("^[.]|[.]$", "");
 
-        new_id = new_id.toLowerCase();
+        if (replaced.isEmpty()) {
+            replaced += "a";
+        }
 
-        for (int i = 0; i < new_id.length(); i++) {
-            char ch = new_id.charAt(i);
-            if (Character.isAlphabetic(ch) || Character.isDigit(ch) ||
-                    ch == '-' || ch == '_' || ch == '.') {
-                answer += ch;
+        if (replaced.length() >= 16) {
+            replaced = replaced.substring(0, 15);
+            if (replaced.endsWith(".")) {
+                replaced = replaced.replaceAll("[.]$", "");
             }
         }
 
-        while (answer.indexOf("..") != -1) {
-            answer = answer.replace("..", ".");
+        while (replaced.length() <= 2) {
+            replaced += replaced.charAt(replaced.length() - 1);
         }
 
-        if (answer.startsWith(".")) {
-            answer = answer.substring(1);
-        }
-
-        if (answer.endsWith(".")) {
-            answer = answer.substring(0, answer.length()-1);
-        }
-
-        if (answer.isEmpty()) {
-            answer += "a";
-        }
-
-        if (answer.length() >= 16) {
-            answer = answer.substring(0,15);
-            if (answer.endsWith(".")) {
-                answer = answer.substring(0, answer.length()-1);
-            }
-        }
-
-        while (answer.length() <= 2) {
-            answer += answer.charAt(answer.length() - 1);
-        }
-        
-        return answer;
+        return replaced;
     }
 }
