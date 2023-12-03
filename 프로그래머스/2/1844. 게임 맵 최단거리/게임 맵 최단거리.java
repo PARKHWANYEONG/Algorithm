@@ -1,37 +1,34 @@
-import java.util.ArrayDeque;
+import java.util.LinkedList;
+import java.util.Queue;
 
 class Solution {
     public int solution(int[][] maps) {
-        int n = maps[0].length; //5
-        int m = maps.length; // 5
-        int[][] move = new int[][]{{1,0},{-1,0},{0,1},{0,-1}};
-        int answer = 1;
-        ArrayDeque<int[]> queue = new ArrayDeque<>();
-        queue.offer(new int[]{0, 0});
-        maps[0][0] = 0;
+        int n = maps[0].length;
+        int m = maps.length;
+        int[][] directions = new int[][]{{-1,0},{1,0},{0,-1},{0,1}};
+        
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(new int[]{0, 0, 1});
 
         while (!queue.isEmpty()) {
-            int queueSize = queue.size();
-            for (int i = 0; i < queueSize; i++) {
-                int[] coor = queue.poll();
+            int[] current = queue.poll();
+            int y = current[0];
+            int x = current[1];
+            int distance = current[2];
 
-                int y = coor[0];
-                int x = coor[1];
+            if (y == m - 1 && x == n - 1) {
+                return distance;
+            }
 
-                for (int j = 0; j < move.length; j++) {
-                    int mx = x + move[j][0];  // 1 -1  0  0
-                    int my = y + move[j][1];  // 0  0  1 -1
+            for (int[] direction : directions) {
+                int ny = y + direction[0];
+                int nx = x + direction[1];
 
-                    if (mx >= 0 && mx < n && my >= 0 && my < m && maps[my][mx] == 1) {
-                        if (mx == n - 1 && my == m - 1) {
-                            return ++answer;
-                        }
-                        queue.offer(new int[]{my, mx});
-                        maps[my][mx] = 0;
-                    }
+                if (ny >= 0 && nx >= 00 && ny < m && nx < n && maps[ny][nx] == 1) {
+                    maps[ny][nx] = 0;
+                    queue.offer(new int[]{ny,nx,distance+1});
                 }
             }
-            answer++;
         }
 
         return -1;
